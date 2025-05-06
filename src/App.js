@@ -1,15 +1,38 @@
 import logo from './logo.svg';
 import './App.css';
+import Calendar from './calendar/calendar';
+import React from 'react';
+
+import { useState, useCallback } from 'react';
+
+function changeViewA()
+{
+  activeView = true;
+  
+}
+
+function changeViewB()
+{
+  activeView = false;
+  
+}
+
+let activeView;
 
 function App() {
-  return (
-    <div className="App">
-       <div class="flex-container">
+  //0: courseview
+  //!0: scheduleview
+  const [view, setview ] = useState(true);
+  const handleToggle = useCallback(() => setview(false))
+  
+  return(
+    <div className='App'>
+              <div class="flex-container">
         
         <div className='left-container'>
           <div className='top-left-container'>
-            <div className='top-left-left-container'>Courses</div>
-            <div className='top-left-right-container'>Schedule</div>
+            <div className='top-left-left-container' onClick={handleToggle}>Courses</div>
+            <div className='top-left-right-container' onClick={handleToggle}>Schedule</div>
           </div>
 
 
@@ -18,34 +41,29 @@ function App() {
           </div>
         </div>
         <div className='right-container'>
-          <div className='top-right-container'>
-            <div className='top-right-left-container'>
-              
-              <p style={{marginBottom: 0, marginTop: 0, textAlign: 'start'}}>MON<span style={{float: 'right'}}>FRI</span></p>
-              <div className='calendar'>
-                <div className='dtlncal'></div>
-                <div className='mon'></div>
-                <div className='tue'></div>
-                <div className='wed'></div>
-                <div className='thur'></div>
-                <div className='fri'></div>
-                </div>
-            </div>
-            
-            <div className='top-right-right-container'>
-              <i className='material-icons' style={{flex:1, verticalAlign: 'top', fontSize:'medium'}}>sunny</i>
-              <i className='material-icons' style={{fontSize:'medium'}}>bedtime</i>
-            </div>
-          </div>
+            <Calendar active={view}/>
+
           
           <div className='bottom-right-container'>
             <p>CREDITS DISPLAYED: </p>
             
           </div>
         </div>
-      </div> 
+      </div>
     </div>
-  );
+  )
+/*
+  if(activeView === 0){
+    return (
+      <div className="App">
+        <coursesView/>
+      </div>
+    );
+  } else{
+    return (
+      <div></div>
+    )
+  }*/
 }
 
 export default App;
