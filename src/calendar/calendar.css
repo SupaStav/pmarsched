@@ -8,8 +8,9 @@
     --bg4: #7c6f64;
     --fg0: #fbf1c7;
     --white: #ffffff;
+    --blue: #83a598;
+    --blue2: #458588;
   }
-
 
   .top-right-left-container{
     flex: auto;
@@ -23,12 +24,13 @@
     flex-direction: column;
   }
   .dtlncal {
+    all: unset;
     border: none;
-    border-top: 2px dashed var(--fg0);
+    border-top: 1px dashed var(--blue);
     height: 1px;
     width: 100%;
-    position: absolute;
-    bottom: 50%
+    position:absolute;
+    bottom: calc(50% - 2px)
   }
 
   
@@ -38,32 +40,32 @@
     display: flex;
     width: auto;
     height: calc(100% - 20px);
-    border: 1px solid;
-    border-radius: 1%;
+    border: 1px solid var(--blue);
     background-color: var(--bg3);
   }
   .mon{
     flex: 1;
-    border-radius: 1% 0% 0% 1%;
+    background-color: var(--bg1);
   }
   
   .tue{
-    background-color: var(--bg4);
+    background-color: var(--bg2);
     flex: 1;
   }
   
   .wed{
+    background-color: var(--bg1);
     flex: 1;
   }
   
   .thur{
-    background-color: var(--bg4);
+    background-color: var(--bg2);
     flex: 1;
   }
   
   .fri{
+    background-color: var(--bg1);
     flex: 1;
-    border-radius: 0% 1% 1% 0%;
   }
   
 .top-right-container{

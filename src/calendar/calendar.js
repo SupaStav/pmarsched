@@ -1,12 +1,10 @@
 import { act, Component } from 'react';
 import './calendar.css';
 
-function Calendar({active})
+function Calendar()
 {
-     
     return(
-        <div>
-        {active && <div className='top-right-container'>
+        <div className='top-right-container'>
         <div className='top-right-left-container'>
               
               <p style={{marginBottom: 0, marginTop: 0, textAlign: 'start'}}>MON<span style={{float: 'right'}}>FRI</span></p>
@@ -24,7 +22,6 @@ function Calendar({active})
               <i className='material-icons' style={{flex:1, verticalAlign: 'top', fontSize:'medium'}}>sunny</i>
               <i className='material-icons' style={{fontSize:'medium'}}>bedtime</i>
             </div>
-            </div>}
             </div>
     );
 }

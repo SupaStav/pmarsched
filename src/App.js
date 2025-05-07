@@ -1,47 +1,43 @@
 import logo from './logo.svg';
 import './App.css';
+import CourseView from './course/courseview';
 import Calendar from './calendar/calendar';
-import React from 'react';
+import React, { act } from 'react';
 
 import { useState, useCallback } from 'react';
-
-function changeViewA()
-{
-  activeView = true;
-  
-}
-
-function changeViewB()
-{
-  activeView = false;
-  
-}
-
-let activeView;
 
 function App() {
   //0: courseview
   //!0: scheduleview
   const [view, setview ] = useState(true);
-  const handleToggle = useCallback(() => setview(false))
+  const handleToggleA = useCallback(() => setview(true))
+  const handleToggleB = useCallback(() => setview(false))
   
   return(
     <div className='App'>
               <div class="flex-container">
         
         <div className='left-container'>
-          <div className='top-left-container'>
-            <div className='top-left-left-container' onClick={handleToggle}>Courses</div>
-            <div className='top-left-right-container' onClick={handleToggle}>Schedule</div>
-          </div>
+          {view == true && <div className='top-left-container'>
+            
+            <div className='top-left-left-container' onClick={handleToggleA} style={{backgroundColor: 'var(--bg0)'}}>Courses</div>
+            <div className='top-left-right-container' onClick={handleToggleB} style={{backgroundColor: 'var(--bg2)'}}>Schedule</div>
 
+          </div>}
+          {view == false &&<div className='top-left-container'>
+            
+            <div className='top-left-left-container' onClick={handleToggleA} style={{backgroundColor: 'var(--bg2)'}}>Courses</div>
+            <div className='top-left-right-container' onClick={handleToggleB} style={{backgroundColor: 'var(--bg0)'}}>Schedule</div>
+
+          </div>}
 
           <div className='bottom-left-container'>
-            <input name='Filter'/>
+            {view && <CourseView />}
+
           </div>
         </div>
         <div className='right-container'>
-            <Calendar active={view}/>
+            {view && <Calendar active={view}/>}
 
           
           <div className='bottom-right-container'>

@@ -1,4 +1,4 @@
-  
+
   .App {
     color: var(--fg0);
   }
@@ -63,14 +63,6 @@
 
 .bottom-left-container{
   margin: 5px;
-}
-.bottom-left-container input{
-  all: unset;
-  width: calc(90%);
-  float: right;
-  padding: 2px;
-  background-color: var(--bg0);
-  border: 2px solid var(--bg4);
 }
 
 .left-container
