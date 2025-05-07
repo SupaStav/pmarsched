@@ -8,16 +8,63 @@
     --bg4: #7c6f64;
     --fg0: #fbf1c7;
     --white: #ffffff;
+    --purple: #b16286;
   }
 
 .courseView {
-    
+    display: flex;
+    flex-direction: column;
+}
+
+.Classselect
+{
+  flex: 1;
+  width: 99%;
+  border: 2px solid var(--bg3);
+  
+}
+
+.listItem{
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  margin: 2px;
+  margin-top: 5px;
+  padding-left: 15px;
+  width: auto;
+  height: 25px;
+  border-radius: 2px/2px;
+  background-color: var(--purple);
+  display: flex;
+  flex-direction: row;
+
+}
+
+.listItem:hover{
+  cursor:pointer;
+}
+
+.courseTitle{
+  display: inline-block;
+  margin-left: 20px;
+  font-size: small;
+  flex:1;
+  vertical-align: middle;
+  margin-top: 3px;
+}
+
+.addButton{
+  width: 35px;
+  height:auto;
+  border-left: 1px solid var(--bg0);
 }
 
 .courseView input{
     all: unset;
     width: calc(90%);
-    float: right;
     padding: 2px;
     background-color: var(--bg0);
     border: 2px solid var(--bg4);
