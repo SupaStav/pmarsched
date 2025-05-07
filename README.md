@@ -1,0 +1,1 @@
+Pet project inspired by hyperschedule for custom usage.
