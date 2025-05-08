@@ -10,10 +10,16 @@ function Calendar()
               <p style={{marginBottom: 0, marginTop: 0, textAlign: 'start'}}>MON<span style={{float: 'right'}}>FRI</span></p>
               <div className='calendar'>
                 <div className='dtlncal'></div>
-                <div className='mon'></div>
+                <div className='mon'>
+                  <div className='calClass' style={{height:`calc(${(3/12)*100}% - 2px)`, top: `${(0/12)*100}%`}}></div>
+                  <div className='calClass' style={{height:`calc(${(3/12)*100}% - 2px)`, top: `${(6/12)*100}%`}}></div>
+                </div>
                 <div className='tue'></div>
                 <div className='wed'></div>
-                <div className='thur'></div>
+                <div className='thur'>
+                  
+                  <div className='calClass' style={{height:`calc(${(1/12)*100}% - 2px)`, top: `${(4/12)*100}%`}}></div>
+                </div>
                 <div className='fri'></div>
                 </div>
             </div>

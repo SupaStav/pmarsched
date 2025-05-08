@@ -31,7 +31,8 @@
     height: 1px;
     width: 100%;
     position:absolute;
-    bottom: calc(50% - 2px)
+    bottom: calc(50% - 2px);
+    z-index: 1000;
   }
 
   
@@ -47,26 +48,31 @@
   .mon{
     flex: 1;
     background-color: var(--bg1);
+    position: relative;
   }
   
   .tue{
     background-color: var(--bg2);
     flex: 1;
+    position: relative;
   }
   
   .wed{
     background-color: var(--bg1);
     flex: 1;
+    position: relative;
   }
   
   .thur{
     background-color: var(--bg2);
     flex: 1;
+    position: relative;
   }
   
   .fri{
     background-color: var(--bg1);
     flex: 1;
+    position: relative;
   }
   
 .top-right-container{
@@ -81,3 +87,17 @@
     margin-left: 5px;
   }
   
+  .calClass{
+    position: absolute;
+    width: calc(100% - 2px);
+
+    background-color: yellow;
+    border: 1px dashed var(--bg0);
+    
+  }
+
+  .calClass:hover
+  {
+    cursor: pointer;
+    background-color: hsl(70, 50%, 50%)
+  }

@@ -3,15 +3,36 @@ import './App.css';
 import CourseView from './course/courseview';
 import Calendar from './calendar/calendar';
 import React, { act } from 'react';
+import Cookies from 'js-cookie';
 
 import { useState, useCallback } from 'react';
+
+function getInitState()
+{
+  if(Cookies.get('state') != "true" && Cookies.get('state') != "false")
+  {
+    console.log("h")
+    return true;
+  } else
+  {
+    switch (Cookies.get('state'))
+    {
+      case "true":
+        return true;
+      case "false":
+        return false;
+    }
+
+  }
+}
 
 function App() {
   //0: courseview
   //!0: scheduleview
-  const [view, setview ] = useState(true);
-  const handleToggleA = useCallback(() => setview(true))
-  const handleToggleB = useCallback(() => setview(false))
+
+  const [view, setview ] = useState(getInitState());
+  const handleToggleA = useCallback(() => {setview(true); Cookies.set('state', "true", { expires: 7, secure: true, path: '/' });})
+  const handleToggleB = useCallback(() => {setview(false); Cookies.set('state', "false", { expires: 7, secure: true, path: '/' });})
   
   return(
     <div className='App'>
