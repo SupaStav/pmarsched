@@ -1,9 +1,108 @@
 import { act, Component } from 'react';
 import './calendar.css';
+import Cookies from 'js-cookie';
+import React, { useState } from 'react';
+import classColors from '../util/color';
+
+function getSchedule()
+{
+  //let schedule = Cookies.get('schedule');
+
+  let schedule = {
+    monday:[
+    {
+      'classid': 'a123',
+      'starttime': 8,
+      'endtime': 12
+    },
+    {
+      'classid': 'b123',
+      'starttime': 2,
+      'endtime': 5
+    }
+  ],
+  tuesday: [
+    {
+      'classid': 'b123',
+      'starttime': 2,
+      'endtime': 5
+    }
+  ],
+  wednesday: [
+    {
+      'classid': 'b123',
+      'starttime': 6,
+      'endtime': 8
+    }
+  ],
+  thursday: [
+
+  ],
+  friday: [
+    {
+      'classid': 'a123',
+      'starttime': 8,
+      'endtime': 12
+    },
+  ]
+}
+
+  if(schedule == null)
+  {
+    return [];
+  }
+  else {
+    return schedule;
+  }
+}
+
 
 function Calendar()
 {
+
+
+  const [isHovered, setIsHovered] = useState('');
+
+
+  const schedmon = getSchedule().monday.map(i => <div className='calClass' onMouseEnter={()=>setIsHovered(`${i.classid}`)} onMouseLeave={()=>setIsHovered('')} style={{
+    height:`calc(${((i.endtime-i.starttime)/12)*100}% - 2px)`, 
+    top: `${(i.starttime/12)*100}%`,
+    background: (isHovered == i.classid) ? `${classColors.yellowsel}` : `${classColors.yellow}`,
+    border: (isHovered == i.classid) ? `1px dashed ${classColors.purple}`:`1px dashed var(--bg0)` 
+  }}>{i.classid}</div>);
+  
+  const schedtue = getSchedule().tuesday.map(i => <div className='calClass' onMouseEnter={()=>setIsHovered(`${i.classid}`)} onMouseLeave={()=>setIsHovered('')} style={{
+    height:`calc(${((i.endtime-i.starttime)/12)*100}% - 2px)`, 
+    top: `${(i.starttime/12)*100}%`,
+    background: (isHovered == i.classid) ? `${classColors.yellowsel}` : `${classColors.yellow}`,
+    border: (isHovered == i.classid) ? `1px dashed ${classColors.purple}`:`1px dashed var(--bg0)` 
+  }}>{i.classid}</div>);
+
+  const schedwed = getSchedule().wednesday.map(i => <div className='calClass' onMouseEnter={()=>setIsHovered(`${i.classid}`)} onMouseLeave={()=>setIsHovered('')} style={{
+    height:`calc(${((i.endtime-i.starttime)/12)*100}% - 2px)`, 
+    top: `${(i.starttime/12)*100}%`,
+    background: (isHovered == i.classid) ? `${classColors.yellowsel}` : `${classColors.yellow}`,
+    border: (isHovered == i.classid) ? `1px dashed ${classColors.purple}`:`1px dashed var(--bg0)` 
+  }}>{i.classid}</div>);
+
+  const schedthu = getSchedule().thursday.map(i => <div className='calClass' onMouseEnter={()=>setIsHovered(`${i.classid}`)} onMouseLeave={()=>setIsHovered('')} style={{
+    height:`calc(${((i.endtime-i.starttime)/12)*100}% - 2px)`, 
+    top: `${(i.starttime/12)*100}%`,
+    background: (isHovered == i.classid) ? `${classColors.yellowsel}` : `${classColors.yellow}`,
+    border: (isHovered == i.classid) ? `1px dashed ${classColors.purple}`:`1px dashed var(--bg0)` 
+  }}>{i.classid}</div>);
+
+  const schedfri = getSchedule().friday.map(i => <div className='calClass' onMouseEnter={()=>setIsHovered(`${i.classid}`)} onMouseLeave={()=>setIsHovered('')} style={{
+    height:`calc(${((i.endtime-i.starttime)/12)*100}% - 2px)`, 
+    top: `${(i.starttime/12)*100}%`,
+    background: (isHovered == i.classid) ? `${classColors.yellowsel}` : `${classColors.yellow}`,
+    border: (isHovered == i.classid) ? `1px dashed ${classColors.purple}`:`1px dashed var(--bg0)` 
+  }}>{i.classid}</div>);
+
+
+
     return(
+      
         <div className='top-right-container'>
         <div className='top-right-left-container'>
               
@@ -11,16 +110,20 @@ function Calendar()
               <div className='calendar'>
                 <div className='dtlncal'></div>
                 <div className='mon'>
-                  <div className='calClass' style={{height:`calc(${(3/12)*100}% - 2px)`, top: `${(0/12)*100}%`}}></div>
-                  <div className='calClass' style={{height:`calc(${(3/12)*100}% - 2px)`, top: `${(6/12)*100}%`}}></div>
+                  {schedmon}
                 </div>
-                <div className='tue'></div>
-                <div className='wed'></div>
+                <div className='tue'>
+                  {schedtue}
+                </div>
+                <div className='wed'>
+                  {schedwed}
+                </div>
                 <div className='thur'>
-                  
-                  <div className='calClass' style={{height:`calc(${(1/12)*100}% - 2px)`, top: `${(4/12)*100}%`}}></div>
+                  {schedthu}
                 </div>
-                <div className='fri'></div>
+                <div className='fri'>
+                  {schedfri}
+                </div>
                 </div>
             </div>
             

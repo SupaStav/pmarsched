@@ -90,8 +90,9 @@
   .calClass{
     position: absolute;
     width: calc(100% - 2px);
-
-    background-color: yellow;
+    color: var(--bg0s);
+    display: flex;
+    align-items: flex-end;
     border: 1px dashed var(--bg0);
     
   }
@@ -99,5 +100,4 @@
   .calClass:hover
   {
     cursor: pointer;
-    background-color: hsl(70, 50%, 50%)
   }
