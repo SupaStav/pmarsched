@@ -45,30 +45,53 @@
   background-color: var(--blue);
 }
 
+.bottom-right-container select:hover{
+  cursor: pointer;
+}
+
 .addSchedule{
-    width: 20px;
-    height: 20px;
-    background-color: var(--blue);
-    vertical-align: middle;
-    padding-left: 2px;
-    padding-right: 2px;
-    position: relative;
-    font-size: small;
-    text-align: center;
-    font-weight: bold;
-    border-left: 2px solid var(--bg4);
-    
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
+  width: 20px;
+  height: 20px;
+  background-color: var(--blue);
+  vertical-align: middle;
+  padding-left: 2px;
+  padding-right: 2px;
+  position: relative;
+  font-size: small;
+  text-align: center;
+  font-weight: bold;
+  border-left: 2px solid var(--bg4);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.editSchedule{
+  width: 20px;
+  height: 20px;
+  background-color: var(--blue);
+  vertical-align: middle;
+  padding-left: 2px;
+  padding-right: 2px;
+  position: relative;
+  font-size: small;
+  text-align: center;
+  font-weight: bold;
+  border-left: 2px solid var(--bg4);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .addSchedule:hover{
     cursor: pointer;
 }
+.editSchedule:hover{
+    cursor: pointer;
+}
 
 .schedule{
-          -webkit-touch-callout: none;
+  -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;

@@ -83,16 +83,33 @@ function Dataprompt()
                 {schedules.map((i) => (<option key={i.id} value={i.id} onClick={handleChange}>{i.id}</option>))}
             </select>
             
-            <div className='addSchedule' onClick={()=>setCreate(true)}><b>+</b></div>
+            <div className='editSchedule'><b><i className='material-icons' style={{marginTop:'4px',fontSize:'small'}}>edit</i></b></div>
+            <div className='addSchedule' style={{ borderRight:'2px solid var(--bg3)'}} onClick={()=>setCreate(true)}><b><i className='material-icons' style={{ marginTop:'4px',fontSize:'medium', verticalAlign:'center'}}>add</i></b></div>
+            
             <p style={{display:'inline-block', marginLeft:'5px'}}>SCHEDULE</p>
 
             {create &&     <div className="createSchedule">
-                Create new schedule:
-                <div className='checkButton'>
-                    <i className='material-icons' style={{scale:'.75'}}>check</i>
+                
+                <div style={{flex:'1'}}>
+                <input></input>
+                <b style={{display:'inline-block'}}>Schedule Name</b>
                 </div>
-                <div className='checkButton' style={{backgroundColor:'red'}} onClick={()=>setCreate(false)}>
-                    <i className='material-icons' style={{scale:'.75'}}>close</i>
+                <div style={{flex:'1', marginTop:'5px'}}>
+                
+                <select style={{outline: '2px solid var(--blue2)',display:'inline-flex', verticalAlign:'middle' , marginRight:'5px'}}>
+                    <option>A</option>
+                </select>
+                <b style={{display:'inline-flex'}}>Term</b>
+                </div>
+                
+                <div style={{flex:'1', marginTop:'5px'}}>
+                <div className='checkButton' style={{backgroundColor:'#cc241d'}} onClick={()=>setCreate(false)}>
+                    CANCEL
+                </div>
+                <div className='checkButton'>
+                    SAVE
+
+                </div>
                 </div>
 
 
