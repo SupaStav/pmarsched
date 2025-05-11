@@ -1,0 +1,77 @@
+  
+:root {
+    --bg0: #1d2021;
+    --bg0s: #32302f;
+    --bg1: #282828;
+    --bg2: #3c3836;
+    --bg3: #665c54;
+    --bg4: #7c6f64;
+    --fg0: #fbf1c7;
+    --white: #ffffff;
+    --blue: #83a598;
+    --blue2: #458588;
+}
+
+
+.bottom-right-container{
+  flex: 3;
+  background-color: var(--bg3);
+  margin: 5px;
+  padding-left: 5px;
+}
+.bottom-right-container p{
+  font-size: small;
+  margin:0;
+  margin-top: 2px;
+}
+.bottom-right-container select{
+    -webkit-appearance: none;
+  -moz-appearance: none;
+  display: inline-block;
+  appearance: none;
+  text-align: left;
+  outline: none;
+  border: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  font-size: small;
+  padding-right: .2em;
+  padding-left: .2em;
+  width: 25%;
+  height: 20px;
+  vertical-align: middle;
+  color: var(--fg0);
+  background-color: var(--blue);
+}
+
+.addSchedule{
+    width: 20px;
+    height: 20px;
+    background-color: var(--blue);
+    vertical-align: middle;
+    padding-left: 2px;
+    padding-right: 2px;
+    position: relative;
+    font-size: small;
+    text-align: center;
+    font-weight: bold;
+    border-left: 2px solid var(--bg4);
+    
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.addSchedule:hover{
+    cursor: pointer;
+}
+
+.schedule{
+          -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

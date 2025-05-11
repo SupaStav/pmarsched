@@ -4,6 +4,7 @@ import CourseView from './course/courseview';
 import Calendar from './calendar/calendar';
 import React, { act } from 'react';
 import Cookies from 'js-cookie';
+import Dataprompt from './datapromp/dataprompt';
 
 import { useState, useCallback } from 'react';
 
@@ -60,11 +61,7 @@ function App() {
         <div className='right-container'>
             {view && <Calendar active={view}/>}
 
-          
-          <div className='bottom-right-container'>
-            <p>CREDITS DISPLAYED: </p>
-            
-          </div>
+            <Dataprompt/>
         </div>
       </div>
     </div>
