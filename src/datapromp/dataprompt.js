@@ -62,6 +62,8 @@ function getActiveSchedule()
 
 function Dataprompt()
 {
+    const [newSchedTerm, setSchedTerm] = useState('')
+    const [newSchedName, setSchedName] = useState('')
     const [create, setCreate] = useState(false)
     const [schedules, updateSchedules] = useState(getSchedules());
     const [sched, setSelectedValue] = useState(getActiveSchedule());
@@ -69,7 +71,9 @@ function Dataprompt()
         setSelectedValue(event.target.value);
     };
 
-    
+    const handleNewSchedName = (event) => {
+        setSchedName(event.target.value);
+    }
     useEffect(() => {
         // storing input name
         localStorage.setItem("schedule", JSON.stringify(sched));
@@ -91,7 +95,7 @@ function Dataprompt()
             {create &&     <div className="createSchedule">
                 
                 <div style={{flex:'1'}}>
-                <input></input>
+                <input value={newSchedName} onChange={handleNewSchedName}></input>
                 <b style={{display:'inline-block'}}>Schedule Name</b>
                 </div>
                 <div style={{flex:'1', marginTop:'5px'}}>
