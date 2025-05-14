@@ -70,9 +70,12 @@ function Dataprompt()
     const [newSchedTerm, setSchedTerm] = useState(currentTerm)
     const [newSchedName, setSchedName] = useState('')
     const [create, setCreate] = useState(false)
+    const [edit, setEdit] = useState(false)
     const [schedules, updateSchedules] = useState([].concat(getSchedules())); //avoid having an empty array at first
     const [sched, setSelectedValue] = useState(getActiveSchedule());
     
+    const [selectMode, setSelectMode] = useState(true);
+
     const handleChange = (event) => {
         setSelectedValue(event.target.value);
     };
@@ -84,6 +87,10 @@ function Dataprompt()
 
     const handleNewSchedName = (event) => {
         setSchedName(event.target.value);
+    }
+
+    const cancelEdit = (event) => {
+        setEdit(false)
     }
 
     const cancelClick = (event) => {
@@ -113,6 +120,17 @@ function Dataprompt()
         }
     }
 
+    useEffect(() => {
+
+        if(edit == create)
+        {
+            setSelectMode(true);
+        } else 
+        {
+            setSelectMode(false);
+        }
+
+    }, [edit, create])
 
     useEffect(() => {
         // storing input name
@@ -127,10 +145,28 @@ function Dataprompt()
                 {schedules.map((i) => (<option key={i.id} value={i.id} onClick={handleChange}>{i.id}</option>))}
             </select>}
             
-            {!create &&<div className='editSchedule'><b><i className='material-icons' style={{marginTop:'4px',fontSize:'small'}}>edit</i></b></div>}
-            <div className='addSchedule' style={{ borderRight:'2px solid var(--bg3)', borderLeft:create?'unset':'2px solid var(--bg4)'}} onClick={()=>setCreate(true)}><b><i className='material-icons' style={{ marginTop:'4px',fontSize:'medium', verticalAlign:'center'}}>add</i></b></div>
+            {!create &&<div className='editSchedule'><b><i className='material-icons' style={{marginTop:'4px',fontSize:'small'}} onClick={()=>setEdit(true)}>edit</i></b></div>}
+            {!edit && <div className='addSchedule' style={{ borderRight:'2px solid var(--bg3)', borderLeft:create?'unset':'2px solid var(--bg4)'}} onClick={()=>setCreate(true)}><b><i className='material-icons' style={{ marginTop:'4px',fontSize:'medium', verticalAlign:'center'}}>add</i></b></div>}
             
-            <p style={{display:'inline-block', marginLeft:'5px'}}>SCHEDULE</p>
+            {selectMode && <p style={{display:'inline-block', marginLeft:'5px'}}>SCHEDULE</p>}
+            {edit && <p style={{display:'inline-block', marginLeft:'5px'}}>EDIT SCHEDULE</p>}
+            {create && <p style={{display:'inline-block', marginLeft:'5px'}}>ADD SCHEDULE</p>}
+
+            { edit && <div className='createSchedule'>
+                <div style={{flex:'1'}}>
+                <input style={{outline: '2px solid var(--blue2)',display:'inline-flex', verticalAlign:'middle' , marginRight:'5px'}}></input>
+                <b style={{display:'inline-block'}}>Schedule Name</b>
+                </div>
+                <div style={{flex:'1', marginTop:'5px'}}>
+                <div className='checkButton' style={{backgroundColor:'#cc241d'}} onClick={cancelEdit}>
+                    CANCEL
+                </div>
+                <div className='checkButton' onClick={saveClick}>
+                    SAVE
+
+                </div>
+                </div>
+                </div>}
 
             {create &&     <div className="createSchedule">
                 
