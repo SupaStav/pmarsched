@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 
 import './createschedule.css';
 
+let currentTerm = "A";
     let pretdat = [
         {
             'id': 'a',
@@ -20,8 +21,11 @@ function getSchedules()
     if(schedule == null || schedule == "")
     {
         let a = new Schedule;
-        a.id = "Default";
-        return [a];
+        a.id = "Default"
+        a.term = "A"
+        localStorage.setItem("schedule", `${a.id}`);
+        localStorage.setItem("schedules", JSON.stringify([a]));
+        return a;
     }
     return schedule;
     /*
@@ -52,7 +56,7 @@ function getSchedules()
 
 function getActiveSchedule()
 {
-    let schedule = JSON.parse(localStorage.getItem("schedule"));
+    let schedule = localStorage.getItem("schedule");
     if(schedule == null || schedule == "")
         {
             return 'Default'
@@ -60,35 +64,71 @@ function getActiveSchedule()
     return schedule;
 }
 
+
 function Dataprompt()
 {
-    const [newSchedTerm, setSchedTerm] = useState('')
+    const [newSchedTerm, setSchedTerm] = useState(currentTerm)
     const [newSchedName, setSchedName] = useState('')
     const [create, setCreate] = useState(false)
-    const [schedules, updateSchedules] = useState(getSchedules());
+    const [schedules, updateSchedules] = useState([].concat(getSchedules())); //avoid having an empty array at first
     const [sched, setSelectedValue] = useState(getActiveSchedule());
+    
     const handleChange = (event) => {
         setSelectedValue(event.target.value);
     };
 
+    const handleNewTerm = (event) => {
+        setSchedTerm(event.target.value);
+        window.alert(newSchedTerm)
+    }
+
     const handleNewSchedName = (event) => {
         setSchedName(event.target.value);
     }
+
+    const cancelClick = (event) => {
+        setSchedName('')
+        setSchedTerm('')
+        setCreate(false)
+    }
+
+    const saveClick = (event) => {
+        //perfom some checks
+        if(newSchedName == "")
+        {
+            window.alert("New schedule needs a name.")
+        } else{
+            
+
+        let tmps = new Schedule;
+        tmps.id = newSchedName;
+        tmps.term = newSchedTerm;
+
+        localStorage.setItem("schedules", JSON.stringify([...schedules, tmps]));
+        updateSchedules([...schedules, tmps]);
+
+        setSchedName('')
+        setSchedTerm('')
+        setCreate(false)
+        }
+    }
+
+
     useEffect(() => {
         // storing input name
-        localStorage.setItem("schedule", JSON.stringify(sched));
+        localStorage.setItem("schedule", sched);
     }, [sched]);
 
     return (
                   
           <div className='bottom-right-container'>            
             <div className='schedule'>
-            <select value={sched}>
+            {!create && <select value={sched}>
                 {schedules.map((i) => (<option key={i.id} value={i.id} onClick={handleChange}>{i.id}</option>))}
-            </select>
+            </select>}
             
-            <div className='editSchedule'><b><i className='material-icons' style={{marginTop:'4px',fontSize:'small'}}>edit</i></b></div>
-            <div className='addSchedule' style={{ borderRight:'2px solid var(--bg3)'}} onClick={()=>setCreate(true)}><b><i className='material-icons' style={{ marginTop:'4px',fontSize:'medium', verticalAlign:'center'}}>add</i></b></div>
+            {!create &&<div className='editSchedule'><b><i className='material-icons' style={{marginTop:'4px',fontSize:'small'}}>edit</i></b></div>}
+            <div className='addSchedule' style={{ borderRight:'2px solid var(--bg3)', borderLeft:create?'unset':'2px solid var(--bg4)'}} onClick={()=>setCreate(true)}><b><i className='material-icons' style={{ marginTop:'4px',fontSize:'medium', verticalAlign:'center'}}>add</i></b></div>
             
             <p style={{display:'inline-block', marginLeft:'5px'}}>SCHEDULE</p>
 
@@ -100,17 +140,17 @@ function Dataprompt()
                 </div>
                 <div style={{flex:'1', marginTop:'5px'}}>
                 
-                <select style={{outline: '2px solid var(--blue2)',display:'inline-flex', verticalAlign:'middle' , marginRight:'5px'}}>
-                    <option>A</option>
+                <select value={newSchedTerm} onChange={handleNewTerm} style={{outline: '2px solid var(--blue2)',display:'inline-flex', verticalAlign:'middle' , marginRight:'5px'}}>
+                    <option>{currentTerm}</option>
                 </select>
                 <b style={{display:'inline-flex'}}>Term</b>
                 </div>
                 
                 <div style={{flex:'1', marginTop:'5px'}}>
-                <div className='checkButton' style={{backgroundColor:'#cc241d'}} onClick={()=>setCreate(false)}>
+                <div className='checkButton' style={{backgroundColor:'#cc241d'}} onClick={cancelClick}>
                     CANCEL
                 </div>
-                <div className='checkButton'>
+                <div className='checkButton' onClick={saveClick}>
                     SAVE
 
                 </div>

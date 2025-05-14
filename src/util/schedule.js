@@ -1,6 +1,7 @@
 class Schedule
 {
-    id;
+    id = "";
+    term = "";
     classes = [];
 }
 
