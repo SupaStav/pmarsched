@@ -73,6 +73,7 @@ function Dataprompt()
     const [edit, setEdit] = useState(false)
     const [schedules, updateSchedules] = useState([].concat(getSchedules())); //avoid having an empty array at first
     const [sched, setSelectedValue] = useState(getActiveSchedule());
+    const [schedindex, setCurrentScheduleIndex] = useState(getActiveScheduleIndex())
     
     const [selectMode, setSelectMode] = useState(true);
 
@@ -97,6 +98,9 @@ function Dataprompt()
         setSchedName('')
         setSchedTerm('')
         setCreate(false)
+    }
+
+    const saveEdit = (event) => {
     }
 
     const saveClick = (event) => {
@@ -141,20 +145,18 @@ function Dataprompt()
                   
           <div className='bottom-right-container'>            
             <div className='schedule'>
-            {!create && <select value={sched}>
+            {!(create != edit) && <select value={sched}>
                 {schedules.map((i) => (<option key={i.id} value={i.id} onClick={handleChange}>{i.id}</option>))}
             </select>}
             
-            {!create &&<div className='editSchedule'><b><i className='material-icons' style={{marginTop:'4px',fontSize:'small'}} onClick={()=>setEdit(true)}>edit</i></b></div>}
+            {!create &&<div style={{borderLeft:edit?'unset':'2px solid var(--bg4)'}} className='editSchedule'><b><i className='material-icons' style={{ marginTop:'3px',fontSize:'medium', verticalAlign:'center'}} onClick={()=>setEdit(true)}>edit</i></b></div>}
             {!edit && <div className='addSchedule' style={{ borderRight:'2px solid var(--bg3)', borderLeft:create?'unset':'2px solid var(--bg4)'}} onClick={()=>setCreate(true)}><b><i className='material-icons' style={{ marginTop:'4px',fontSize:'medium', verticalAlign:'center'}}>add</i></b></div>}
             
-            {selectMode && <p style={{display:'inline-block', marginLeft:'5px'}}>SCHEDULE</p>}
-            {edit && <p style={{display:'inline-block', marginLeft:'5px'}}>EDIT SCHEDULE</p>}
-            {create && <p style={{display:'inline-block', marginLeft:'5px'}}>ADD SCHEDULE</p>}
+            <p style={{display:'inline-block', marginLeft:'5px'}}>SCHEDULE</p>
 
             { edit && <div className='createSchedule'>
                 <div style={{flex:'1'}}>
-                <input style={{outline: '2px solid var(--blue2)',display:'inline-flex', verticalAlign:'middle' , marginRight:'5px'}}></input>
+                <input placeholder={`${sched}`} style={{outline: '2px solid var(--blue2)',display:'inline-flex', verticalAlign:'middle' , marginRight:'5px'}}></input>
                 <b style={{display:'inline-block'}}>Schedule Name</b>
                 </div>
                 <div style={{flex:'1', marginTop:'5px'}}>
@@ -187,7 +189,7 @@ function Dataprompt()
                     CANCEL
                 </div>
                 <div className='checkButton' onClick={saveClick}>
-                    SAVE
+                    CREATE
 
                 </div>
                 </div>
